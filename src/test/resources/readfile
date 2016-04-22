@@ -1,0 +1,1 @@
+while(x<3){int i = 0; i=i+x; System.out.println(i);}
