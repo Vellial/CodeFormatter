@@ -1,7 +1,7 @@
 package com.lightside.codeformatterproject;
 
-import com.lightside.codeformatterproject.codeFormatter.CodeFormatterException;
-import com.lightside.codeformatterproject.codeFormatter.CodeFormatter;
+import com.lightside.codeformatterproject.codeformatter.CodeFormatterException;
+import com.lightside.codeformatterproject.codeformatter.CodeFormatter;
 import com.lightside.codeformatterproject.reader.readerimpl.FileReader;
 import com.lightside.codeformatterproject.writer.writerimpl.FileWriter;
 import com.lightside.codeformatterproject.reader.readerimpl.StringReader;
@@ -9,12 +9,12 @@ import com.lightside.codeformatterproject.writer.writerimpl.StringWriter;
 
 import java.io.File;
 /**
- * Main class for Code codeFormatter
+ * Main class for Code codeformatter
  */
 public class Main {
 
     /**
-     * Main method for code codeFormatter.
+     * Main method for code codeformatter.
      * @param args string args.
      * //@throws CodeFormatterException exception.
      */

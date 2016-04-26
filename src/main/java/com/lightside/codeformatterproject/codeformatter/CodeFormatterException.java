@@ -1,7 +1,7 @@
-package com.lightside.codeformatterproject.codeFormatter;
+package com.lightside.codeformatterproject.codeformatter;
 
 /**
- * Exception for codeFormatter
+ * Exception for codeformatter
  */
 public class CodeFormatterException extends Exception {
 

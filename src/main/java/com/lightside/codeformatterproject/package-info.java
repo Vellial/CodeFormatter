@@ -1,4 +1,4 @@
 /**
- * Code codeFormatter.
+ * Code codeformatter.
  */
 package com.lightside.codeformatterproject;

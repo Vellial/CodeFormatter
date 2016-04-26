@@ -1,4 +1,4 @@
-package com.lightside.codeformatterproject.codeFormatter;
+package com.lightside.codeformatterproject.codeformatter;
 
 import com.lightside.codeformatterproject.reader.readerinterface.IReader;
 import com.lightside.codeformatterproject.writer.writerinterface.IWriter;
