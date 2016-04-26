@@ -1,31 +1,31 @@
 package com.lightside.codeformatterproject;
 
-import com.lightside.codeformatterproject.impl.CodeFormatter;
-import com.lightside.codeformatterproject.impl.filestreams.FileReader;
-import com.lightside.codeformatterproject.impl.filestreams.FileWriter;
-import com.lightside.codeformatterproject.impl.strings.StringReader;
-import com.lightside.codeformatterproject.impl.strings.StringWriter;
+import com.lightside.codeformatterproject.codeFormatter.CodeFormatterException;
+import com.lightside.codeformatterproject.codeFormatter.CodeFormatter;
+import com.lightside.codeformatterproject.reader.readerimpl.FileReader;
+import com.lightside.codeformatterproject.writer.writerimpl.FileWriter;
+import com.lightside.codeformatterproject.reader.readerimpl.StringReader;
+import com.lightside.codeformatterproject.writer.writerimpl.StringWriter;
 
 import java.io.File;
-
 /**
- * Main class for Code CodeFormatter
+ * Main class for Code codeFormatter
  */
 public class Main {
 
     /**
-     * Main method for code CodeFormatter.
+     * Main method for code codeFormatter.
      * @param args string args.
-     * @throws ICodeFormatterException exception.
+     * //@throws CodeFormatterException exception.
      */
-    public static void main(final String[] args) throws ICodeFormatterException {
+    public static void main(final String[] args) throws CodeFormatterException {
 
         // Formatting file with code.
         File dir = new File("./src/main/resources");
         File file = new File(dir, "readfile"); // file for reading.
         File writeFile = new File("./src/main/resources/writefile"); // file for writing.
         try {
-            FileReader fileReader = new FileReader(file);
+            FileReader fileReader = new FileReader(file); // todo add logger here
             FileWriter fileWriter = new FileWriter(writeFile);
             CodeFormatter codeFormatter = new CodeFormatter();
             codeFormatter.formatCode(fileReader, fileWriter);
@@ -33,14 +33,14 @@ public class Main {
             fileWriter.close();
 
             // Formatting string with code.
-            String code = "while(x<3){int i = 0; i=i+x; System.out.println(i);}";
+            String code = "while(x<3){int i = 0;i=i+x;System.out.println(i);if(x < 2) {System.out.println(\"Hohoho\");while (x) {int t = 0;int m = 1;int n = m + t;}}}";
             StringReader strReader = new StringReader(code);
             StringWriter strWriter = new StringWriter();
             codeFormatter.formatCode(strReader, strWriter);
             String result = strWriter.getString();
             System.out.println(result);
         } catch (Exception e) {
-            throw new ICodeFormatterException("Code Formatter Error", e);
+            throw new CodeFormatterException(e);
         }
 
     }

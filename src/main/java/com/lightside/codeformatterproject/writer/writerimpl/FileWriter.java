@@ -1,7 +1,7 @@
-package com.lightside.codeformatterproject.impl.filestreams;
+package com.lightside.codeformatterproject.writer.writerimpl;
 
-import com.lightside.codeformatterproject.IWriter;
-import com.lightside.codeformatterproject.IWriterException;
+import com.lightside.codeformatterproject.writer.writerinterface.IWriter;
+import com.lightside.codeformatterproject.writer.writerinterface.WriterException;
 
 import java.io.*;
 
@@ -24,28 +24,33 @@ public class FileWriter implements IWriter {
     }
 
     /**
-     * Write to string or file new symbols
-     * @param str string for writing
-     * @throws IWriterException exception
+     * Write to string or file new symbols.
+     * @param str string for writing.
+     * @param repeat int quantity of repeating.
+     * @throws WriterException exception.
      */
-    public void write(final String str) throws IWriterException {
+    public void write(final String str, final int repeat) throws WriterException {
+        int i = repeat;
         try {
-            writer.write(str);
+            while (i > 0) {
+                writer.write(str);
+                i--;
+            }
             writer.flush();
         } catch (Exception e) {
-            throw new IWriterException("Writer Exception", e);
+            throw new WriterException(e);
         }
     }
 
     /**
      * Closing stream.
-     * @throws IWriterException writer exception.
+     * @throws WriterException writer exception.
      */
-    public void close() throws IWriterException {
+    public void close() throws WriterException {
         try {
             writer.close();
         } catch (Exception e) {
-            throw new IWriterException("Close Writer Error", e);
+            throw new WriterException(e);
         }
     }
 }

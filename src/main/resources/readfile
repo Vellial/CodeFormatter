@@ -1,1 +1,1 @@
-while(x<3){int i = 0; i=i+x; System.out.println(i);}
+while(x<3){int i = 0;i=i+x;System.out.println(i);if(x < 2) {System.out.println("Hohoho");while (x) {int t = 0;int m = 1;int n = m + t;}}}
