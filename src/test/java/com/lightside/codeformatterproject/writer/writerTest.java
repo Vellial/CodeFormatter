@@ -1,41 +1,23 @@
-package com.lightside.codeformatterproject;
+package com.lightside.codeformatterproject.writer;
 
-import com.lightside.codeformatterproject.reader.readerinterface.ReaderException;
-import com.lightside.codeformatterproject.writer.writerinterface.WriterException;
 import com.lightside.codeformatterproject.reader.readerimpl.FileReader;
+import com.lightside.codeformatterproject.reader.readerinterface.ReaderException;
 import com.lightside.codeformatterproject.writer.writerimpl.FileWriter;
-import com.lightside.codeformatterproject.reader.readerimpl.StringReader;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import com.lightside.codeformatterproject.writer.writerimpl.StringWriter;
+import com.lightside.codeformatterproject.writer.writerinterface.WriterException;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 /**
- * FileReader Test
+ * Tests for writer.
  */
-public class readerTest {
-
-    @Test
-    public void readFileTest() throws FileNotFoundException, ReaderException {
-        File dir = new File("./src/test/resources");
-        File file = new File(dir, "readfile");
-        FileReader fileReader = new FileReader(file);
-        assertEquals(fileReader.read(), 'w');
-    }
-
-    @Test(expected = ReaderException.class)
-    public void readFileErrTest() throws FileNotFoundException, ReaderException {
-        File dir = new File("./src/test/resources");
-        File file = new File(dir, "exception");
-        FileReader fileReader = new FileReader(file);
-        fileReader.read();
-        fail();
-    }
+public class writerTest {
 
     @Test(expected = WriterException.class)
     public void writeFileErrTest() throws FileNotFoundException, UnsupportedEncodingException, WriterException, ReaderException {
@@ -62,17 +44,9 @@ public class readerTest {
     }
 
     @Test
-    public void readStrTest() throws ReaderException {
-        String string = "while(true){int x = 0; x=x+1;}";
-        StringReader stringReader = new StringReader(string);
-        assertEquals(stringReader.read(), 'w');
-    }
-
-    @Test
     public void writeStrTest() throws WriterException {
         StringWriter stringWriter = new StringWriter();
         stringWriter.write("test", 1);
         assertEquals(stringWriter.getString(), "test");
     }
-
 }

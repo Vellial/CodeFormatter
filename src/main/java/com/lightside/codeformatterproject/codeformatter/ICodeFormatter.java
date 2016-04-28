@@ -13,8 +13,7 @@ public interface ICodeFormatter {
      * Method for code formatting
      * @param reader Input stream.
      * @param writer Output stream.
-     * @throws ReaderException reader exceptions.
-     * @throws WriterException writer exceptions.
+     * @throws CodeFormatterException reader exceptions.
      */
     void formatCode(IReader reader, IWriter writer) throws CodeFormatterException;
 }

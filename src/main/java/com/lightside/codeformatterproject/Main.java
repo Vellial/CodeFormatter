@@ -1,11 +1,11 @@
 package com.lightside.codeformatterproject;
 
-import com.lightside.codeformatterproject.codeformatter.CodeFormatterException;
 import com.lightside.codeformatterproject.codeformatter.CodeFormatter;
 import com.lightside.codeformatterproject.reader.readerimpl.FileReader;
 import com.lightside.codeformatterproject.writer.writerimpl.FileWriter;
 import com.lightside.codeformatterproject.reader.readerimpl.StringReader;
 import com.lightside.codeformatterproject.writer.writerimpl.StringWriter;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 /**
@@ -18,9 +18,11 @@ public class Main {
      * @param args string args.
      * //@throws CodeFormatterException exception.
      */
-    public static void main(final String[] args) throws CodeFormatterException {
+    public static void main(final String[] args) {
+        final org.slf4j.Logger logger = LoggerFactory.getLogger(Main.class);
 
         // Formatting file with code.
+        logger.info("Application started");
         File dir = new File("./src/main/resources");
         File file = new File(dir, "readfile"); // file for reading.
         File writeFile = new File("./src/main/resources/writefile"); // file for writing.
@@ -40,7 +42,8 @@ public class Main {
             String result = strWriter.getString();
             System.out.println(result);
         } catch (Exception e) {
-            throw new CodeFormatterException(e);
+            logger.error("Fatal error", e);
+//            throw new CodeFormatterException(e);
         }
 
     }

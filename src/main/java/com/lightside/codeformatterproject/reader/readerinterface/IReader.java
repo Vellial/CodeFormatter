@@ -14,12 +14,7 @@ public interface IReader {
     /**
      * Get hasNext.
      * @return hasNext.
+     * @throws ReaderException
      */
-    boolean hasNext() throws ReaderException; // todo hasNext
-
-    /**
-     * Method for closing thread.
-     * @throws ReaderException reader exception.
-     */
-    void close() throws ReaderException;
+    boolean hasNext() throws ReaderException;
 }

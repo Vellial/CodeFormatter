@@ -42,11 +42,4 @@ public class StringReader implements IReader {
         return hasNext;
     }
 
-    /**
-     * Closing stream.
-     * @throws ReaderException reader exception.
-     */
-    public void close() throws ReaderException {
-
-    }
 }

@@ -1,5 +1,6 @@
 package com.lightside.codeformatterproject.reader.readerimpl;
 
+import com.lightside.codeformatterproject.additional.IClosable;
 import com.lightside.codeformatterproject.reader.readerinterface.IReader;
 import com.lightside.codeformatterproject.reader.readerinterface.ReaderException;
 
@@ -7,9 +8,9 @@ import java.io.*;
 
 /**
  * Class for reading from file.
- * todo closable interface
+ * todo additional interface
  */
-public class FileReader implements IReader {
+public class FileReader implements IReader, IClosable {
 
     private InputStream fileInputStream;
 

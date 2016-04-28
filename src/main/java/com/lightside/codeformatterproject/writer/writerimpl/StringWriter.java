@@ -1,11 +1,13 @@
 package com.lightside.codeformatterproject.writer.writerimpl;
 
+import com.lightside.codeformatterproject.additional.IClosable;
+import com.lightside.codeformatterproject.additional.IStringGetter;
 import com.lightside.codeformatterproject.writer.writerinterface.IWriter;
 
 /**
  * String writer.
  */
-public class StringWriter implements IWriter {
+public class StringWriter implements IWriter, IStringGetter {
 
     private StringBuilder string;
 
@@ -30,18 +32,10 @@ public class StringWriter implements IWriter {
     }
 
     /**
-     * todo interface
      * Getter for string.
      * @return string.
      */
     public String getString() {
         return string.toString();
-    }
-
-    /**
-     * Closing stream.
-     */
-    public void close() {
-
     }
 }

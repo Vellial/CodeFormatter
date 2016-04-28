@@ -53,4 +53,5 @@ public class FileWriter implements IWriter {
             throw new WriterException(e);
         }
     }
+
 }
