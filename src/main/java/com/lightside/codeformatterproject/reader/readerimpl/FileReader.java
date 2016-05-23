@@ -20,7 +20,7 @@ public class FileReader implements IReader, IClosable {
      * @throws FileNotFoundException exception.
      */
     public FileReader(final File file) throws FileNotFoundException {
-        fileInputStream = new FileInputStream(file);
+        fileInputStream = new BufferedInputStream(new FileInputStream(file));
     }
 
     /**

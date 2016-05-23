@@ -14,7 +14,7 @@ public interface IReader {
     /**
      * Get hasNext.
      * @return hasNext.
-     * @throws ReaderException
+     * @throws ReaderException exception.
      */
     boolean hasNext() throws ReaderException;
 }

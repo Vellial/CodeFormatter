@@ -11,4 +11,11 @@ public interface IWriter {
      * @throws WriterException writer exception.
      */
     void write(String str, int repeat) throws WriterException;
+
+    /**
+     * Method for deleting symbols from string.
+     * @param position position of symbol.
+     * @param repeat int number of repeating.
+     */
+//    void delete(int position, int repeat);
 }
