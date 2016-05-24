@@ -8,7 +8,6 @@ import java.io.*;
 
 /**
  * Class for reading from file.
- * todo additional interface
  */
 public class FileReader implements IReader, IClosable {
 

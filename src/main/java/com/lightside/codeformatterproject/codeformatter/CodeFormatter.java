@@ -1,6 +1,7 @@
 package com.lightside.codeformatterproject.codeformatter;
 
 import com.lightside.codeformatterproject.reader.readerinterface.IReader;
+import com.lightside.codeformatterproject.settings.Settings;
 import com.lightside.codeformatterproject.writer.writerinterface.IWriter;
 
 import java.util.Arrays;
@@ -10,9 +11,19 @@ import java.util.Arrays;
  */
 public class CodeFormatter implements ICodeFormatter {
 
-    private static final String ENTER = "\n";
-    private static final char SPACE = ' ';
-    private static final int REPEAT = 4;
+    private String lineBreak;
+    private char offsetSymbol;
+    private int offsetLength;
+
+    /**
+     * Doc
+     * @param settings settings
+     */
+    public CodeFormatter(final Settings settings) {
+        this.lineBreak = settings.getLineBreak();
+        this.offsetSymbol = settings.getOffsetSymbol();
+        this.offsetLength = settings.getOffsetLength();
+    }
 
     /**
      * Method for format code
@@ -29,20 +40,20 @@ public class CodeFormatter implements ICodeFormatter {
                 str.append(symbol);
                 switch (symbol) {
                     case '{':
-                        writer.write(makeString(str.toString(), REPEAT * bracketcounter), 1);
-                        writer.write(ENTER, 1);
+                        writer.write(makeString(str.toString(), offsetLength * bracketcounter), 1);
+                        writer.write(lineBreak, 1);
                         str.delete(0, str.length());
                         bracketcounter++;
                         break;
                     case ';':
-                        writer.write(makeString(str.toString(), REPEAT * bracketcounter), 1);
-                        writer.write(ENTER, 1);
+                        writer.write(makeString(str.toString(), offsetLength * bracketcounter), 1);
+                        writer.write(lineBreak, 1);
                         str.delete(0, str.length());
                         break;
                     case '}':
-                        int repeat = (REPEAT * bracketcounter) + (REPEAT * -1);
+                        int repeat = (offsetLength * bracketcounter) + (offsetLength * -1);
                         writer.write(makeString(str.toString(), repeat), 1);
-                        writer.write(ENTER, 1);
+                        writer.write(lineBreak, 1);
                         str.delete(0, str.length());
                         bracketcounter--;
                         break;
@@ -58,7 +69,7 @@ public class CodeFormatter implements ICodeFormatter {
     private String makeString(final String str, final int offset) throws NegativeArraySizeException {
         try {
             char[] array = new char[offset];
-            Arrays.fill(array, SPACE);
+            Arrays.fill(array, offsetSymbol);
             String offsetStr = new String(array);
             return offsetStr + str.trim();
         } catch (NegativeArraySizeException e) {
