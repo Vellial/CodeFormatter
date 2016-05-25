@@ -4,65 +4,67 @@ import com.lightside.codeformatterproject.additional.IClosable;
 import com.lightside.codeformatterproject.reader.readerinterface.IReader;
 import com.lightside.codeformatterproject.reader.readerinterface.ReaderException;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
- * Class for reading from file.
+ * Read from URL
  */
-public class FileReader implements IReader, IClosable {
-
-    private InputStream fileInputStream;
+public class URLReader implements IReader, IClosable {
+    private InputStream in;
 
     /**
-     * Constructor.
-     * @param file file to read.
-     * @throws FileNotFoundException exception.
+     * Constructor
+     * @param url url to code for formatting.
+     * @throws IOException exception.
      */
-    public FileReader(final File file) throws FileNotFoundException {
-        fileInputStream = new FileInputStream(file);
+    public URLReader(final String url) throws IOException {
+        URL httpUrl = new URL(url);
+        URLConnection connection = httpUrl.openConnection();
+        in = connection.getInputStream();
     }
 
     /**
-     * Method for reading symbols from file.
+     * Read symbol from URL
      * @return char symbol.
-     * @throws ReaderException reader exception.
+     * @throws ReaderException reader exception
      */
     public char read() throws ReaderException {
         try {
-            return (char) fileInputStream.read();
+            return (char) in.read();
         } catch (Exception e) {
             throw new ReaderException(e);
         }
     }
 
     /**
-     * Get hasNext of file.
-     * @return hasNext.
-     * @throws ReaderException reader exception.
+     * Checks next symbol in stream.
+     * @return boolean has next or not.
+     * @throws ReaderException reader exception
      */
     public boolean hasNext() throws ReaderException {
         boolean hasNext = true;
         try {
-            if (fileInputStream.available() <= 0) {
+            if (in.available() <= 0) {
                 hasNext = false;
             }
             return hasNext;
         } catch (Exception e) {
             throw new ReaderException(e);
         }
-
     }
 
     /**
-     * Closing stream.
-     * @throws ReaderException reader exception.
+     * Close stream.
+     * @throws ReaderException exception.
      */
     public void close() throws ReaderException {
         try {
-            fileInputStream.close();
+            in.close();
         } catch (Exception e) {
             throw new ReaderException(e);
         }
     }
-
 }

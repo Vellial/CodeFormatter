@@ -4,6 +4,9 @@ import com.lightside.codeformatterproject.reader.readerinterface.IReader;
 import com.lightside.codeformatterproject.settings.Settings;
 import com.lightside.codeformatterproject.writer.writerinterface.IWriter;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Arrays;
 
 /**
@@ -40,6 +43,7 @@ public class CodeFormatter implements ICodeFormatter {
                 str.append(symbol);
                 switch (symbol) {
                     case '{':
+                        String s = str.toString();
                         writer.write(makeString(str.toString(), offsetLength * bracketcounter), 1);
                         writer.write(lineBreak, 1);
                         str.delete(0, str.length());

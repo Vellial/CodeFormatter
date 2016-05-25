@@ -20,14 +20,6 @@ public class StringReader implements IReader {
     }
 
     /**
-     * Get symbol index.
-     * @return index.
-     */
-    public int getIndex() {
-        return index;
-    }
-
-    /**
      * Read symbol from string.
      * @return char symbol from string.
      * @throws ReaderException reader exception.

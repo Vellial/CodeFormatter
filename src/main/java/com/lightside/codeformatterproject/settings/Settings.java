@@ -10,12 +10,14 @@ public class Settings {
     private String lineBreak;
     private char offsetSymbol;
     private int offsetLength;
+    private String url;
 
     /**
      * Dpc
      * @param props sdg sdf sf
      */
     public Settings(final Properties props) {
+        this.url = props.getProperty("url");
         this.lineBreak = props.getProperty("line_break");
         String temp = props.getProperty("offset_length");
         this.offsetLength = Integer.valueOf(temp);
@@ -35,4 +37,7 @@ public class Settings {
         return offsetLength;
     }
 
+    public String getUrl() {
+        return url;
+    }
 }

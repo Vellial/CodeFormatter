@@ -2,6 +2,7 @@ package com.lightside.codeformatterproject;
 
 import com.lightside.codeformatterproject.codeformatter.CodeFormatter;
 import com.lightside.codeformatterproject.reader.readerimpl.FileReader;
+import com.lightside.codeformatterproject.reader.readerimpl.URLReader;
 import com.lightside.codeformatterproject.settings.Settings;
 import com.lightside.codeformatterproject.writer.writerimpl.FileWriter;
 import com.lightside.codeformatterproject.reader.readerimpl.StringReader;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.URL;
 import java.util.Properties;
 
 /**
@@ -35,11 +37,14 @@ public class Main {
 
         File file = new File(dir, "readfile"); // file for reading.
         File writeFile = new File("./src/main/resources/writefile"); // file for writing.
+        File writeFileFromUrl = new File("./src/main/resources/writefile2"); // file for writing from URL.
         try {
+            // Get settings from file.
             Properties props = new Properties();
             props.load(new FileInputStream(settings));
             fileSettings = new Settings(props);
-            
+
+            // Formatting code from file to other file.
             FileReader fileReader = new FileReader(file);
             FileWriter fileWriter = new FileWriter(writeFile);
             CodeFormatter codeFormatter = new CodeFormatter(fileSettings);
@@ -54,6 +59,15 @@ public class Main {
             codeFormatter.formatCode(strReader, strWriter);
             String result = strWriter.getString();
             System.out.println(result);
+
+            // Formatting code from URL (file)
+            String url = fileSettings.getUrl();
+            URLReader urlReader = new URLReader(url);
+            FileWriter urlWriter = new FileWriter(writeFileFromUrl);
+            codeFormatter.formatCode(urlReader, urlWriter);
+            urlReader.close();
+            urlWriter.close();
+
         } catch (Exception e) {
             logger.error("Fatal error", e);
         }

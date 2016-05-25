@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 /**
  * FileReader Test
@@ -17,7 +18,7 @@ import java.io.FileNotFoundException;
 public class readerTest {
 
     @Test
-    public void readFileTest() throws FileNotFoundException, ReaderException {
+    public void readFileTest() throws FileNotFoundException, ReaderException, UnsupportedEncodingException {
         File dir = new File("./src/test/resources");
         File file = new File(dir, "readfile");
         FileReader fileReader = new FileReader(file);
@@ -25,7 +26,7 @@ public class readerTest {
     }
 
     @Test(expected = ReaderException.class)
-    public void readFileErrTest() throws FileNotFoundException, ReaderException {
+    public void readFileErrTest() throws FileNotFoundException, ReaderException, UnsupportedEncodingException {
         File dir = new File("./src/test/resources");
         File file = new File(dir, "exception");
         FileReader fileReader = new FileReader(file);
