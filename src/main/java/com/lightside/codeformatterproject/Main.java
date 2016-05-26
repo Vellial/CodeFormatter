@@ -2,7 +2,6 @@ package com.lightside.codeformatterproject;
 
 import com.lightside.codeformatterproject.codeformatter.CodeFormatter;
 import com.lightside.codeformatterproject.reader.readerimpl.FileReader;
-import com.lightside.codeformatterproject.reader.readerimpl.URLReader;
 import com.lightside.codeformatterproject.settings.Settings;
 import com.lightside.codeformatterproject.writer.writerimpl.FileWriter;
 import com.lightside.codeformatterproject.reader.readerimpl.StringReader;
@@ -11,7 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Properties;
 
 /**
@@ -45,7 +46,7 @@ public class Main {
             fileSettings = new Settings(props);
 
             // Formatting code from file to other file.
-            FileReader fileReader = new FileReader(file);
+            FileReader fileReader = new FileReader(new FileInputStream(file));
             FileWriter fileWriter = new FileWriter(writeFile);
             CodeFormatter codeFormatter = new CodeFormatter(fileSettings);
             codeFormatter.formatCode(fileReader, fileWriter);
@@ -62,7 +63,10 @@ public class Main {
 
             // Formatting code from URL (file)
             String url = fileSettings.getUrl();
-            URLReader urlReader = new URLReader(url);
+            URL httpUrl = new URL(url);
+            URLConnection connection = httpUrl.openConnection();
+            InputStream in = connection.getInputStream();
+            FileReader urlReader = new FileReader(in);
             FileWriter urlWriter = new FileWriter(writeFileFromUrl);
             codeFormatter.formatCode(urlReader, urlWriter);
             urlReader.close();

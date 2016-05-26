@@ -18,8 +18,8 @@ public class FileReader implements IReader, IClosable {
      * @param file file to read.
      * @throws FileNotFoundException exception.
      */
-    public FileReader(final File file) throws FileNotFoundException {
-        fileInputStream = new FileInputStream(file);
+    public FileReader(final InputStream file) throws FileNotFoundException {
+        this.fileInputStream = file;
     }
 
     /**

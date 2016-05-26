@@ -9,6 +9,7 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
@@ -21,7 +22,7 @@ public class readerTest {
     public void readFileTest() throws FileNotFoundException, ReaderException, UnsupportedEncodingException {
         File dir = new File("./src/test/resources");
         File file = new File(dir, "readfile");
-        FileReader fileReader = new FileReader(file);
+        FileReader fileReader = new FileReader(new FileInputStream(file));
         assertEquals(fileReader.read(), 'w');
     }
 
@@ -29,7 +30,7 @@ public class readerTest {
     public void readFileErrTest() throws FileNotFoundException, ReaderException, UnsupportedEncodingException {
         File dir = new File("./src/test/resources");
         File file = new File(dir, "exception");
-        FileReader fileReader = new FileReader(file);
+        FileReader fileReader = new FileReader(new FileInputStream(file));
         fileReader.read();
         fail();
     }

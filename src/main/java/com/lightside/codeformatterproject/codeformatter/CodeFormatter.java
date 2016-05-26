@@ -19,7 +19,7 @@ public class CodeFormatter implements ICodeFormatter {
     private int offsetLength;
 
     /**
-     * Doc
+     * Constructor
      * @param settings settings
      */
     public CodeFormatter(final Settings settings) {

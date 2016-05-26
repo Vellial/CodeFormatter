@@ -8,6 +8,7 @@ import com.lightside.codeformatterproject.writer.writerinterface.WriterException
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
@@ -32,7 +33,7 @@ public class writerTest {
         File writeFile = new File("./src/test/resources/writefile");
         FileWriter fileWriter = new FileWriter(writeFile);
         fileWriter.write("test", 1);
-        FileReader fReader = new FileReader(writeFile);
+        FileReader fReader = new FileReader(new FileInputStream(writeFile));
         char[] chars = new char[(int) writeFile.length()];
         int i = 0;
         while (fReader.hasNext()) {
