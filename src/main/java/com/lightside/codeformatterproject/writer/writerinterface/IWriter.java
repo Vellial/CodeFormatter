@@ -13,6 +13,12 @@ public interface IWriter {
     void write(String str, int repeat) throws WriterException;
 
     /**
+     * Method for getting wrote string.
+     * @return string wrote string.
+     */
+    String getString();
+
+    /**
      * Method for deleting symbols from string.
      * @param position position of symbol.
      * @param repeat int number of repeating.

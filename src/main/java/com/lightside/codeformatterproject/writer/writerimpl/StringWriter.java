@@ -31,18 +31,6 @@ public class StringWriter implements IWriter, IStringGetter {
     }
 
     /**
-     * Delete symbol
-     * @param position position of symbol.
-     */
-    public void delete(final int position, final int repeat) {
-        int i = repeat;
-        while (i > 0) {
-            string.deleteCharAt(position);
-            i--;
-        }
-    }
-
-    /**
      * Getter for string.
      * @return string.
      */

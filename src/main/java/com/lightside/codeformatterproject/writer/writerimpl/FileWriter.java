@@ -11,6 +11,7 @@ import java.io.*;
 public class FileWriter implements IWriter {
 
     private Writer writer;
+    private StringBuilder string;
 
     /**
      * Constructor.
@@ -21,6 +22,7 @@ public class FileWriter implements IWriter {
     public FileWriter(final File file) throws FileNotFoundException, UnsupportedEncodingException {
         OutputStream fileOutputStream = new FileOutputStream(file);
         writer = new OutputStreamWriter(fileOutputStream, "utf-8");
+        string = new StringBuilder();
     }
 
     /**
@@ -33,6 +35,7 @@ public class FileWriter implements IWriter {
         int i = repeat;
         try {
             while (i > 0) {
+                string.append(str);
                 writer.write(str);
                 i--;
             }
@@ -40,6 +43,14 @@ public class FileWriter implements IWriter {
         } catch (Exception e) {
             throw new WriterException(e);
         }
+    }
+
+    /**
+     * Method for getting wrote string.
+     * @return string wrote string.
+     */
+    public String getString() {
+        return string.toString();
     }
 
     /**
